@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VOGUE·AI — Virtual Fashion Advisor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+<link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav id="nav">
+      <div class="nav-logo" onclick="showPage('home')">
+        VOGUE<span>·AI</span>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+        <a onclick="showPage('news')" id="nav-news">Fashion News</a>
+        <a onclick="showPage('profile')" id="nav-profile">My Style</a>
+      </div>
+      <div class="nav-actions">
+        <button class="btn-theme" id="themeToggle" title="Toggle dark mode">
+          🌙
+        </button>
+        <button class="nav-toggle" id="navToggle">☰</button>
+      </div>
+    </nav>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">✓ <span id="toastMsg"></span></div>
+
+    <!-- ============== HOME PAGE ============== -->
+    <div class="page active" id="page-home">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+          <div class="hero-text animate-in">
+            <div class="hero-eyebrow">AI-Powered Style Intelligence</div>
+            <h1 class="hero-title">
+              Dress for <em>every</em><br />version of you.
+            </h1>
+            <p class="hero-subtitle">
+              Meet your personal AI fashion advisor. Get curated outfit
+              recommendations tailored to your body, skin tone, occasion, and
+              style — powered by real trend intelligence.
+            </p>
+            <div class="hero-actions">
+              <button
+                class="btn-primary"
+                onclick="
+                  showPage('profile');
+                  showProfileTab('quiz');
+                "
+              >
+                ✨ Start Style Quiz
+              </button>
+              <button class="btn-ghost" onclick="showPage('news')">
+                Explore Trends →
+              </button>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-slider">
+              <div class="hero-slide active">
+                <img src="hero1.jpeg" alt="Luxury Neutral Fashion Collection" />
+              </div>
+              <div class="hero-slide">
+                <img src="hero2.jpeg" alt="Pastel Ethnic Fashion Collection" />
+              </div>
+              <div class="hero-slide">
+                <img src="hero3.jpeg" alt="Luxury Accessories Editorial" />
+              </div>
+              <div class="hero-slide">
+                <img src="hero4.jpeg" alt="Dior Runway Collection" />
+              </div>
+
+              <div class="hero-slider-overlay"></div>
+
+              <div class="hero-slider-dots">
+                <span class="hero-dot active" data-slide="0"></span>
+                <span class="hero-dot" data-slide="1"></span>
+                <span class="hero-dot" data-slide="2"></span>
+                <span class="hero-dot" data-slide="3"></span>
+              </div>
+            </div>
+
+            
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORY SECTIONS -->
+      <div class="section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Trending Right Now</h2>
+            <p class="section-subtitle">Curated for the season</p>
+          </div>
+          <a class="section-link" onclick="showPage('news')">View all news →</a>
+        </div>
+        <div class="category-tabs" id="homeCategoryTabs">
+          <button
+            class="cat-tab active"
+            data-cat="all"
+            onclick="filterHomeCards('all', this)"
+          >
+            All
+          </button>
+          <button
+            class="cat-tab"
+            data-cat="women"
+            onclick="filterHomeCards('women', this)"
+          >
+            Women's
+          </button>
+          <button
+            class="cat-tab"
+            data-cat="seasonal"
+            onclick="filterHomeCards('seasonal', this)"
+          >
+            Seasonal
+          </button>
+          <button
+            class="cat-tab"
+            data-cat="accessories"
+            onclick="filterHomeCards('accessories', this)"
+          >
+            Accessories
+          </button>
+          <button
+            class="cat-tab"
+            data-cat="footwear"
+            onclick="filterHomeCards('footwear', this)"
+          >
+            Footwear
+          </button>
+        </div>
+        <div class="fashion-grid" id="homeCards"></div>
+      </div>
+
+      <!-- AI CTA SECTION -->
+      <section
+        style="
+          background: linear-gradient(135deg, #1a0d12, #2d1a22);
+          padding: 5rem 2rem;
+          text-align: center;
+          margin: 2rem 0;
+        "
+      >
+        <div style="max-width: 640px; margin: 0 auto">
+          <p
+            style="
+              font-size: 0.75rem;
+              color: rgba(240, 160, 181, 0.7);
+              text-transform: uppercase;
+              letter-spacing: 0.12em;
+              margin-bottom: 1rem;
+            "
+          >
+            ✦ AI Fashion Intelligence
+          </p>
+          <h2
+            style="
+              font-family: var(--font-display);
+              font-size: 2.5rem;
+              color: white;
+              font-weight: 700;
+              margin-bottom: 1rem;
+              line-height: 1.2;
+            "
+          >
+            Your personal stylist,<br /><em
+              style="color: #f0a0b5; font-style: italic"
+              >available 24/7</em
+            >
+          </h2>
+          <p
+            style="
+              font-size: 1rem;
+              color: rgba(255, 255, 255, 0.6);
+              margin-bottom: 2.5rem;
+              line-height: 1.75;
+            "
+          >
+            Take our intelligent style quiz and get AI-powered outfit
+            recommendations tailored exactly to your body proportions, skin
+            undertone, and lifestyle.
+          </p>
+          <button
+            class="btn-primary"
+            onclick="
+              showPage('profile');
+              showProfileTab('quiz');
+            "
+            style="font-size: 1rem; padding: 1rem 2.5rem"
+          >
+            Begin My Style Analysis →
+          </button>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-inner">
+          <div class="footer-brand">
+            <h3>VOGUE·AI</h3>
+            <p>
+              Your personal AI fashion advisor — delivering personalized style,
+              trend intelligence, and outfit curation powered by artificial
+              intelligence.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <a href="#">Trending Now</a>
+            <a href="#">Fashion News</a>
+            <a href="#">Style Guides</a>
+            <a href="#">Lookbooks</a>
+          </div>
+          <div class="footer-col">
+            <h4>Features</h4>
+            <a href="#">Style Quiz</a>
+            <a href="#">Mood Board</a>
+            <a href="#">AI Advisor</a>
+            <a href="#">Saved Outfits</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#">About</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2025 VOGUE·AI. All rights reserved.</span>
+          <span>Powered by Gemini AI</span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ============== NEWS PAGE ============== -->
+    <div class="page" id="page-news">
+      <div class="section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Fashion News & Insights</h2>
+            <p class="section-subtitle">Stay ahead of the curve</p>
+          </div>
+        </div>
+        <div class="category-tabs" id="newsCategoryTabs">
+          <button
+            class="cat-tab active"
+            data-cat="all"
+            onclick="filterNews('all', this)"
+          >
+            All
+          </button>
+          <button
+            class="cat-tab"
+            data-cat="trends"
+            onclick="filterNews('trends', this)"
+          >
+            Trends
+          </button>
+          <button
+            class="cat-tab"
+            data-cat="styling"
+            onclick="filterNews('styling', this)"
+          >
+            Styling Tips
+          </button>
+          <button
+            class="cat-tab"
+            data-cat="celebrity"
+            onclick="filterNews('celebrity', this)"
+          >
+            Celebrity
+          </button>
+        </div>
+        <div class="news-grid" id="newsGrid"></div>
+      </div>
+    </div>
+
+    <!-- ============== PROFILE PAGE ============== -->
+    <div class="page" id="page-profile">
+      <div class="section">
+        <div class="profile-layout">
+          <!-- Sidebar -->
+          <aside>
+            <div class="profile-card">
+              <div class="profile-avatar" id="profileAvatar">S</div>
+              <div class="profile-name" id="profileName">Style Enthusiast</div>
+              <div class="profile-bio">Building my perfect wardrobe ✨</div>
+              <div class="profile-stats">
+                <div class="profile-stat">
+                  <span class="profile-stat-num" id="statSaved">0</span>
+                  <span class="profile-stat-label">Saved</span>
+                </div>
+                <div class="profile-stat">
+                  <span class="profile-stat-num" id="statMoodboard">0</span>
+                  <span class="profile-stat-label">Pins</span>
+                </div>
+                <div class="profile-stat">
+                  <span class="profile-stat-num" id="statQuizDone">0</span>
+                  <span class="profile-stat-label">Looks</span>
+                </div>
+              </div>
+              <nav class="profile-nav">
+                <button
+                  class="profile-nav-item active"
+                  onclick="showProfileTab('saved')"
+                  data-tab="saved"
+                >
+                  <span class="profile-nav-icon">♡</span> Saved Outfits
+                </button>
+                <button
+                  class="profile-nav-item"
+                  onclick="showProfileTab('moodboard')"
+                  data-tab="moodboard"
+                >
+                  <span class="profile-nav-icon">⊞</span> Mood Board
+                </button>
+                <button
+                  class="profile-nav-item"
+                  onclick="showProfileTab('quiz')"
+                  data-tab="quiz"
+                >
+                  <span class="profile-nav-icon">✦</span> Style Quiz
+                </button>
+                <button
+                  class="profile-nav-item"
+                  onclick="showProfileTab('results')"
+                  data-tab="results"
+                >
+                  <span class="profile-nav-icon">◈</span> My Results
+                </button>
+              </nav>
+            </div>
+          </aside>
+
+          <!-- Main Content -->
+          <main class="profile-content">
+            <!-- SAVED OUTFITS TAB -->
+            <div class="profile-tab active" id="tab-saved">
+              <h3
+                style="
+                  font-family: var(--font-display);
+                  font-size: 1.4rem;
+                  margin-bottom: 1.5rem;
+                "
+              >
+                Saved Outfits
+              </h3>
+              <div id="savedOutfitsGrid">
+                <div class="empty-state">
+                  <div class="empty-icon">♡</div>
+                  <div class="empty-title">No saved outfits yet</div>
+                  <div class="empty-desc">
+                    Browse trending styles and tap the heart to save your
+                    favourites.
+                  </div>
+                  <br />
+                  <button
+                    class="btn-primary"
+                    onclick="showPage('home')"
+                    style="margin-top: 1rem"
+                  >
+                    Explore Styles
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- MOOD BOARD TAB -->
+            <div class="profile-tab" id="tab-moodboard">
+              <div class="moodboard-header">
+                <h3 style="font-family: var(--font-display); font-size: 1.4rem">
+                  My Mood Board
+                </h3>
+                <button
+                  class="btn-primary"
+                  onclick="document.getElementById('moodboardUpload').click()"
+                >
+                  + Add Image
+                </button>
+              </div>
+              <input
+                type="file"
+                id="moodboardUpload"
+                accept="image/*"
+                multiple
+                style="display: none"
+                onchange="handleMoodboardUpload(event)"
+              />
+              <div
+                class="upload-zone"
+                onclick="document.getElementById('moodboardUpload').click()"
+              >
+                <div class="upload-icon">🖼️</div>
+                <div class="upload-text">
+                  <strong>Click to upload</strong> or drag and drop<br />
+                  <span>PNG, JPG, GIF up to 10MB</span>
+                </div>
+              </div>
+              <div class="moodboard-grid" id="moodboardGrid"></div>
+              <div id="moodboardEmpty" class="empty-state">
+                <div class="empty-icon">🎨</div>
+                <div class="empty-title">Your mood board is empty</div>
+                <div class="empty-desc">
+                  Upload outfit images you love to curate your personal style
+                  board.
+                </div>
+              </div>
+            </div>
+
+            <!-- QUIZ TAB -->
+            <div class="profile-tab" id="tab-quiz">
+              <div class="quiz-container" id="quizContainer">
+                <div class="quiz-progress-bar">
+                  <div
+                    class="quiz-progress-fill"
+                    id="quizProgressFill"
+                    style="width: 10%"
+                  ></div>
+                </div>
+                <div id="quizContent"></div>
+              </div>
+            </div>
+
+            <!-- RESULTS TAB -->
+            <div class="profile-tab" id="tab-results">
+              <div id="resultsContainer">
+                <div class="empty-state">
+                  <div class="empty-icon">✦</div>
+                  <div class="empty-title">No style analysis yet</div>
+                  <div class="empty-desc">
+                    Complete the style quiz to get your personalised AI fashion
+                    recommendations.
+                  </div>
+                  <br />
+                  <button
+                    class="btn-primary"
+                    onclick="showProfileTab('quiz')"
+                    style="margin-top: 1rem"
+                  >
+                    Take Style Quiz
+                  </button>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+<script src="style.js"></script>   
+  </body>
+</html>

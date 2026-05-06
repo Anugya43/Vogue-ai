@@ -1,10 +1,10 @@
      // ===== GEMINI API CONFIG =====
-      const GEMINI_API_KEY = "AIzaSyBN_u2_AFiNe_zsCuahsXWB_r7stchVWOw"; // Replace with your Gemini API key
+      const GEMINI_API_KEY = "Your_gemini_api_key"; // Replace with your Gemini API key
       const GEMINI_URL =
         "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
 
       // ===== NEWS API CONFIG =====
-      const NEWS_API_KEY = "816b4d9db48347f79a9f464a75717d2d"; // Replace with your NewsAPI key
+      const NEWS_API_KEY = "your_news_Api_key"; // Replace with your NewsAPI key
       const NEWS_API_BASE = "https://newsapi.org/v2";
 
       // ===== FETCH FASHION NEWS =====
